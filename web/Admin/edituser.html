@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit User</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.navBar{
+        width: 100%;
+        height: auto;
+        background-color: lightgray;
+}
+ul {
+    width: 95.5%;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+li a:hover:not(.active) {
+background-color: #111;
+color: white;
+}
+
+.active {
+background-color: lightblue;
+}
+.logout{
+    position: absolute;
+    background-color: red;
+}
+
+</style>
+</head>
+<body>
+    <div  class="navBar">
+        <ul>
+            <li><a class="active" href="adminpanel.html">Admin Panel</a></li>
+            <li><a href="register.html">Register User</a></li>
+            <li><a href="#" class="logout" id="logoutBtn">Logout</a></li>
+        </ul>
+    </div>
+<h1 style="text-align: center;">Edit User</h1>
+<div id="userInfo"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Function to fetch user data by ID
+    function fetchUserData(userId) {
+        $.ajax({
+            type: 'GET',
+            url: `https://api.ifpc.center/api/Admin/GetUserById/${userId}`,
+            success: function(user) {
+                displayUserData(user);
+            },
+            error: function(xhr, status, error) {
+                console.log('Error fetching user data: ' + error);
+            }
+        });
+    }
+
+    // Function to display user data
+    function displayUserData(user) {
+        var userInfoHtml = `
+            <form id="editForm">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="${user.email}">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" name="password" value="${user.password}">
+                </div>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="${user.name}">
+                </div>
+                <div>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" value="${user.lastName}">
+                </div>
+                <div>
+                    <label for="caseNumber">Case Number:</label>
+                    <input type="text" id="caseNumber" name="caseNumber" value="${user.caseNumber}">
+                </div>
+                <div>
+                    <label for="lostAmount">Lost Amount:</label>
+                    <input type="text" id="lostAmount" name="lostAmount" value="${user.lostAmount}">
+                </div>
+                <div>
+                    <label for="recoveredFunds">Recovered Funds:</label>
+                    <input type="text" id="recoveredFunds" name="recoveredFunds" value="${user.recoveredFunds}">
+                </div>
+                <div>
+                    <label for="liquidity">Liquidity:</label>
+                    <input type="text" id="liquidity" name="liquidity" value="${user.liquidity}">
+                </div>
+                <div>
+                    <label for="requiredLiquidity">Required Liquidity:</label>
+                    <input type="text" id="requiredLiquidity" name="requiredLiquidity" value="${user.requiredLiquidity}">
+                </div>
+                <div>
+                    <label for="fwBalance">Full Withdrawal Balance:</label>
+                    <input type="text" id="fwBalance" name="fwBalance" value="${user.fullWithdrawalBalance}">
+                </div>
+                <div>
+                    <label for="walletAddress">Wallet Address:</label>
+                    <input type="text" id="walletAddress" name="walletAddress" value="${user.walletAddress}">
+                </div>
+                <div>
+                    <label for="complain">Complain:</label>
+                    <textarea id="complain" name="complain">${user.complain}</textarea>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        `;
+        $('#userInfo').html(userInfoHtml);
+        
+        // Attach event handler for form submission
+        $('#editForm').submit(function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get updated user data from form
+            var updatedUser = {
+                email: $('#email').val(),
+                password: $('#password').val(),
+                name: $('#name').val(),
+                lastName: $('#lastName').val(),
+                caseNumber: $('#caseNumber').val(),
+                lostAmount: $('#lostAmount').val(),
+                recoveredFunds: $('#recoveredFunds').val(),
+                liquidity: $('#liquidity').val(),
+                requiredLiquidity: $('#requiredLiquidity').val(),
+                fullWithdrawalBalance: $('#fwBalance').val(),
+                walletAddress: $('#walletAddress').val(),
+                complain: $('#complain').val()
+            };
+            
+            // Send AJAX request to update user data
+            $.ajax({
+                type: 'PUT', // Use PUT method for updating data
+                // url: `https://api.ifpc.center/api/Admin/UpdateUser/${user.id}`,
+                url: `https://api.ifpc.center/api/Admin/UpdateUser/${user.id}`,
+                data: JSON.stringify(updatedUser), // Convert JavaScript object to JSON string
+                contentType: 'application/json', // Set content type to indicate JSON payload
+                success: function(response) {
+                    alert("Updated Succesfully!")
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error updating user data: ' + error);
+                }
+            });
+        });
+    }
+
+    // Extract user ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+
+    // Fetch and display user data on page load
+    fetchUserData(userId);
+});
+$(document).ready(function() {
+    var role = localStorage.getItem("Role");
+    if (role === null || role !== "ADMINIFPC") {
+        window.location.href = '../index.html'; 
+    }
+});
+$(document).ready(function() {
+    function logout() {
+        if (confirm("Are you sure you want to log out?")) {
+            localStorage.removeItem("Authentication");
+            localStorage.removeItem("Role");
+
+            window.location.href = '../index.html';
+        }
+    }
+
+    // Attach event handler to logout button
+    $('#logoutBtn').click(logout);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+/*
+Theme Name: Flatsome Child
+Description: This is a child theme for Flatsome Theme
+Author: UX Themes
+Template: flatsome
+Version: 3.0
+*/
+
+/*************** ADD CUSTOM CSS HERE.   ***************/
+
+/***Header***/
+
+#logo {
+	margin-left:5%;
+}
+
+.flex-right {
+	margin-right:5%;
+}
+
+.header-nav li {
+    padding: 0px 10px 0px 10px;
+    font-weight: 400;
+}
+
+.nav-left {
+    justify-content: center;
+}
+
+.header-wrapper.stuck, .header-shadow .header-wrapper, .layout-shadow #wrapper {
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+
+.nav>li>a, .nav-dropdown>li>a, .nav-column>li>a, .nav-vertical-fly-out>li>a {
+	color:black;
+}
+
+
+
+/***Body***/
+
+.cover .container {
+    max-width: 100%;
+}
+
+.odd td:last-child, .even td:last-child, tr .sorting:last-child {
+    display: none;
+}
+
+th.sorting_asc, th.sorting, tr.even {
+    background-color: white !important;
+}
+
+#DataTables_Table_0_wrapper .bottom {
+    display: none;
+}
+
+.tabbed-content .nav-left {
+    justify-content: start;
+}
+
+/***Product***/
+
+p.name.product-title.woocommerce-loop-product__title a {
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+span.amount {
+    white-space: nowrap;
+    color: black;
+    font-weight: 400;
+}
+
+button.single_add_to_cart_button.button.alt {
+    background-color: black;
+    border-color: black;
+}
+
+button.single_add_to_cart_button.button.alt:hover {
+    background-color: white;
+    border-color: black;
+	color:black;
+	opacity:1;
+	transition:0.2s linear;
+	box-shadow:none;
+}
+
+/***Contact***/
+
+input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid black;
+}
+
+textarea.wpcf7-form-control.wpcf7-textarea {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid black;
+}
+
+/***Newsletter***/
+
+input.wpcf7-form-control.wpcf7-text.wpcf7-email.wpcf7-validates-as-required.wpcf7-validates-as-email {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+input.wpcf7-form-control.has-spinner.wpcf7-submit.button {
+    border-radius: 0;
+}
+
+/****Complaint****/
+
+span#nf-form-title-22 {
+    display: none;
+}
+
+.nf-field-element input {
+    border: none !important;
+    background: transparent !important;
+    border-bottom: 1px solid black !important;
+    box-shadow: none !important;
+    color: black !important;
+    padding: 0 !important;
+}
+
+.nf-field-element select {
+    border-bottom: 1px solid black !important;
+    box-shadow: none !important;
+	color:black !important;
+	padding:0 !important;
+    background: transparent !important;
+}
+
+#nf-field-9-wrap .nf-field-element>div{
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+input#nf-field-14 {
+    border: 1px solid black !IMPORTANT;
+    padding: 6px 20px 10px 20px !important;
+}
+
+textarea#nf-field-13 {
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.nf-form-content label {
+    font-size: 11pt !important;
+}
+
+
+
+/****Ninja****/
+
+#nf-form-5-cont {
+	background-color: unset !important;
+    padding: unset !important;
+    border-radius: unset !important;
+    background-image: unset !important;
+    background-repeat: unset !important;
+    background-size: unset !important;
+    background-position: unset !important;
+}
+
+.nf-form-fields-required {
+    display: none;
+}
+
+.nf-form-content .list-select-wrap .nf-field-element>div, .nf-form-content input:not([type=button]), .nf-form-content textarea {
+    background: transparent !important;
+    border: none !important;    
+	border-bottom: 1px solid black !important;
+}
+
+.nf-field-element input[type=button] {
+    width: 100% !important;
+    border: 1px solid black !important;
+}
+
+.nf-field-element input[type=button]:hover {
+    background: black !important;
+    color: white !important;
+}
+
+/****Add Card****/
+
+.upper-labels {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 9pt;
+}
+
+
+/****Add Bank****/
+
+.nf-field-element h1 {
+    font-size: 14pt;
+    text-transform: uppercase;
+}
+
+hr.ninja-forms-field {
+    display: none;
+}
+
+.tabl h3 {
+    font-size: 11pt;
+}
+
+.foo {
+  width: 100%;
+  height: 350px;
+  overflow-y: hidden;
+	border:0;
+  content: '';
+  top: 0;
+  left: 0;
+}
+.foo1 {
+  width: 100%;
+  height: 450px;
+  overflow-y: hidden;
+	border:0;
+  content: '';
+  top: 0;
+  left: 0;
+}
+.foo2 {
+  width: 100%;
+  height: 550px;
+  overflow-y: hidden;
+	border:0;
+  content: '';
+  top: 0;
+  left: 0;
+}
+.foo3 {
+  width: 100%;
+    height: 1300px;
+  overflow-y: hidden;
+	border:0;
+  content: '';
+  top: 0;
+  left: 0;
+}
+.foo5 {
+  width: 100%;
+  height: 900px;
+  overflow-y: hidden;
+	border:0;
+  content: '';
+  top: 0;
+  left: 0;
+}
+
+/***Counter***/
+
+.wpsm_counter_b_row .wpsm_counterbox .wpsm_number {
+	font-size: unset !important;
+    font-weight: unset !important;
+    color: unset !important;
+    font-family: unset !important;
+    letter-spacing: unset !important;
+    margin-top: 0 !important;
+    line-height: unset !important;
+}
+
+.wpsm_col-md-4 {
+    width: auto !important;
+	padding:0 !important;
+}
+
+.wpsm_counter_b_row .wpsm_counterbox {
+    text-align: center;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+h3.wpsm_count-title {
+    display: none;
+}
+
+.wpsm_counter_b_row {
+	display:inline-block;
+	width:auto !important;
+	top: 7px;
+    left: 0px;
+}
+
+.page-id-2 .wpsm_counter_b_row {
+	top:4px;
+}
+
+/***Footer***/
+
+footer .social-icons i {
+	color:white;
+}
+
+a.ux-menu-link__link.flex {
+    font-size: 10pt;
+    min-height: 2em;
+}
+
+span.ux-menu-link__text, .ux-menu-title {
+    color: white;
+}
+span.ux-menu-link__text:hover {
+    color: #C2A075;
+}
+
+.absolute-footer {
+	display:none;
+}
+
+/****Account****/
+
+.wrap p {
+    overflow-wrap: anywhere;
+}
+
+.dash {
+	display:none;
+}
+
+.logged-in .dash {
+	display:flex;
+}
+
+.dashboard-links {
+    display: none;
+}
+
+.account-user.circle {
+    display: none;
+}
+
+ul#my-account-nav {
+    margin-top: 0px;
+}
+
+.verification {
+	font-size:.9em;
+	font-style:italic;
+	font-weight:400;
+}
+
+.nav-vertical.nav-line>li>a:before {
+	display:none;
+}
+
+@media only screen and (max-width: 48em) {
+/*************** ADD MOBILE ONLY CSS HERE  ***************/
+
+
+#logo {
+	margin-left:unset;
+	margin-right:auto;
+}
+	
+	.flex-right {
+    margin-right: unset;
+}
+
+	.nav-left {
+		justify-content:flex-start;
+	}
+	.mobile-section-width {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+	.mobile-width {
+		max-width:95% !important;
+	}
+}

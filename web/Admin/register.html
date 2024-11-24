@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit User</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.navBar{
+        width: 100%;
+        height: auto;
+        background-color: lightgray;
+}
+ul {
+    width: 95.5%;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+li a:hover:not(.active) {
+background-color: #111;
+color: white;
+}
+
+.active {
+background-color: lightblue;
+}
+.logout{
+    position: absolute;
+    background-color: red;
+}
+
+</style>
+</head>
+<body>
+<div  class="navBar">
+    <ul>
+        <li><a href="adminpanel.html">Admin Panel</a></li>
+        <li><a href="register.html" class="active">Register User</a></li>
+        <li><a href="#" class="logout">Logout</a></li>
+    </ul>
+</div>
+<h1 style="text-align: center;">Register User</h1>
+<form id="registerForm">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password">
+    </div>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" >
+    </div>
+    <div>
+        <label for="caseNumber">Case Number:</label>
+        <input type="text" id="caseNumber" name="caseNumber" >
+    </div>
+    <div>
+        <label for="lostAmount">Lost Amount:</label>
+        <input type="text" id="lostAmount" name="lostAmount" >
+    </div>
+    <div>
+        <label for="recoveredFunds">Recovered Funds:</label>
+        <input type="text" id="recoveredFunds" name="recoveredFunds" >
+    </div>
+    <div>
+        <label for="liquidity">Liquidity:</label>
+        <input type="text" id="liquidity" name="liquidity" >
+    </div>
+    <div>
+        <label for="requiredLiquidity">Required Liquidity:</label>
+        <input type="text" id="requiredLiquidity" name="requiredLiquidity" >
+    </div>
+    <div>
+        <label for="fwBalance">Full Withdrawal Balance:</label>
+        <input type="text" id="fwBalance" name="fwBalance" >
+    </div>
+    <div>
+        <label for="walletAddress">Wallet Address:</label>
+        <input type="text" id="walletAddress" name="walletAddress" >
+    </div>
+    <div>
+        <label for="complain">Complain:</label>
+        <textarea id="complain" name="complain"></textarea>
+    </div>
+    <button type="submit">Save Changes</button>
+</form>
+<div id="userInfo"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#registerForm').submit(function(event){
+        event.preventDefault(); // Prevent default form submission
+
+        var formData = {
+                email: $('#email').val(),
+                password: $('#password').val(),
+                name: $('#name').val(),
+                lastName: $('#lastName').val(),
+                caseNumber: $('#caseNumber').val(),
+                lostAmount: $('#lostAmount').val(),
+                recoveredFunds: $('#recoveredFunds').val(),
+                liquidity: $('#liquidity').val(),
+                requiredLiquidity: $('#requiredLiquidity').val(),
+                fullWithdrawalBalance: $('#fwBalance').val(),
+                walletAddress: $('#walletAddress').val(),
+                complain: $('#complain').val()
+            };      
+        // Send AJAX request
+        $.ajax({
+            type: 'POST',
+            url: 'https://api.ifpc.center/api/Admin/Register',
+            data: JSON.stringify(formData),
+            contentType: 'application/json',
+            success: function(response){
+                $('#registerForm').trigger('reset');
+            },
+            error: function(xhr, status, error){
+                // Handle errors
+                alert(xhr.responseText);
+                // Optionally, you can show an error message to the user
+            }
+        });
+    });
+});
+$(document).ready(function() {
+    var role = localStorage.getItem("Role");
+    if (role === null || role !== "ADMINIFPC") {
+        window.location.href = '../index.html'; 
+    }
+});
+$(document).ready(function() {
+    function logout() {
+        if (confirm("Are you sure you want to log out?")) {
+            localStorage.removeItem("Authentication");
+            localStorage.removeItem("Role");
+
+            window.location.href = '../index.html';
+        }
+    }
+
+    // Attach event handler to logout button
+    $('#logoutBtn').click(logout);
+});
+</script>
+</body>
+</html>
